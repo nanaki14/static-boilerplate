@@ -1,43 +1,46 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: __dirname + '/dist',
-    filename: 'index_bundle.js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "My App",
-      filename: 'index.html',
-      template: "./src/index.jsx",
-    }),
-    new HtmlWebpackPlugin({
-      title: "My App",
-      filename: 'about/index.html',
-      template: "./src/about/index.jsx",
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js(|x)$/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/react"],
-            },
-          },
-        ],
-      },
+module.exports = (env, argv) => {
+  const isProduction = (argv.mode === 'production');
+
+  return {
+    entry: path.resolve(__dirname, './src/assets/js/index.ts'),
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
+    },
+    output: {
+      path:  __dirname + '/dist',
+      filename: 'main.js'
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: "My App",
+        filename: 'index.html',
+        template: "./src/pages/index.tsx",
+      }),
+      new HtmlWebpackPlugin({
+        title: "My App",
+        filename: 'about/index.html',
+        template: "./src/pages/about/index.tsx",
+      }),
     ],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    host: '0.0.0.0',
-    port: 58080
+    devtool: isProduction === 'production' ? undefined : 'eval-source-map',
+    module: {
+      rules: [
+        {
+          test: [/\.ts$/, /\.tsx$/, /\.js$/],
+          use: ['babel-loader', 'ts-loader'],
+        },
+      ],
+    },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      host: '0.0.0.0',
+      port: 58080
+    }
   }
 };

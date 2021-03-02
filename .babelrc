@@ -1,0 +1,25 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@": "./src/"
+        }
+      }
+    ]
+  ],
+  "presets": [
+    "@babel/react",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "targets": "> 0.25%, not dead"
+      }
+    ],
+    ["@babel/preset-typescript"]
+  ]
+}
