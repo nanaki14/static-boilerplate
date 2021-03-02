@@ -1,0 +1,20 @@
+{
+  "name": "static-boilerplate",
+  "version": "1.0.0",
+  "repository": "git@github.com:nanaki14/static-boilerplate.git",
+  "author": "nanaki14 <nanaki14@example.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode=production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  }
+}
