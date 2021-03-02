@@ -5,6 +5,7 @@
   "author": "nanaki14 <nanaki14@example.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "webpack serve --mode=development",
     "build": "webpack --mode=production"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "webpack": "^5.24.2",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

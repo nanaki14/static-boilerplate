@@ -1,10 +1,8 @@
+const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: {
-    'index': './src/index.js',
-    'about': './src/index.js'
-  },
+  entry: './src/index.js',
   output: {
     path: __dirname + '/dist',
     filename: 'index_bundle.js'
@@ -14,13 +12,11 @@ module.exports = {
       title: "My App",
       filename: 'index.html',
       template: "./src/index.jsx",
-      chunks: ['index'],
     }),
     new HtmlWebpackPlugin({
       title: "My App",
       filename: 'about/index.html',
       template: "./src/about/index.jsx",
-      chunks: ['about'],
     }),
   ],
   module: {
@@ -38,4 +34,10 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    host: '0.0.0.0',
+    port: 58080
+  }
 };
