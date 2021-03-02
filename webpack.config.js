@@ -2,6 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => {
   const isProduction = (argv.mode === 'production');
@@ -38,10 +39,51 @@ module.exports = (env, argv) => {
         ]},
         { copyUnmodified: true }
       ),
+      new MiniCssExtractPlugin({
+        filename: "style.css",
+      }),
     ],
     devtool: isProduction === 'production' ? undefined : 'eval-source-map',
     module: {
       rules: [
+        {
+          test: /\.scss/,
+          use: [
+            "style-loader",
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: false,
+              },
+            },
+            {
+              loader: "css-loader",
+              options: {
+                url: false,
+                sourceMap: !isProduction,
+                importLoaders: 2,
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    ["autoprefixer", {
+                      grid: true
+                    }],
+                  ],
+                },
+              },
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                sourceMap: !isProduction,
+              },
+            },
+          ],
+        },
         {
           test: [/\.ts$/, /\.tsx$/, /\.js$/],
           use: ['babel-loader', 'ts-loader'],
