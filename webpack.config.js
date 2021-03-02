@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyFilePlugin = require("copy-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProduction = (argv.mode === 'production');
@@ -26,6 +27,17 @@ module.exports = (env, argv) => {
         filename: 'about/index.html',
         template: "./src/pages/about/index.tsx",
       }),
+      new CopyFilePlugin(
+        {
+          patterns: [
+            {
+                context: "public",
+                from: "**/*",
+                to: path.resolve(__dirname, "dist")
+            }
+        ]},
+        { copyUnmodified: true }
+      ),
     ],
     devtool: isProduction === 'production' ? undefined : 'eval-source-map',
     module: {

@@ -6,7 +6,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production && prettier --write dist/*.html dist/**/*.html && yarn squoosh",
+    "squoosh:jpg:webp": "squoosh-cli --webp '{\"quality\":35,\"target_size\":0,\"target_PSNR\":0,\"method\":4,\"sns_strength\":50,\"filter_strength\":60,\"filter_sharpness\":0,\"filter_type\":1,\"partitions\":0,\"segments\":4,\"pass\":1,\"show_compressed\":0,\"preprocessing\":0,\"autofilter\":0,\"partition_limit\":0,\"alpha_compression\":1,\"alpha_filtering\":1,\"alpha_quality\":100,\"lossless\":0,\"exact\":0,\"image_hint\":0,\"emulate_jpeg_size\":0,\"thread_level\":0,\"low_memory\":0,\"near_lossless\":100,\"use_delta_palette\":0,\"use_sharp_yuv\":0}' public/images/**.jpg -d public/images",
+    "squoosh:png:webp": "squoosh-cli --webp '{\"quality\":35,\"target_size\":0,\"target_PSNR\":0,\"method\":4,\"sns_strength\":50,\"filter_strength\":60,\"filter_sharpness\":0,\"filter_type\":1,\"partitions\":0,\"segments\":4,\"pass\":1,\"show_compressed\":0,\"preprocessing\":0,\"autofilter\":0,\"partition_limit\":0,\"alpha_compression\":1,\"alpha_filtering\":1,\"alpha_quality\":100,\"lossless\":0,\"exact\":0,\"image_hint\":0,\"emulate_jpeg_size\":0,\"thread_level\":0,\"low_memory\":0,\"near_lossless\":100,\"use_delta_palette\":0,\"use_sharp_yuv\":0}' public/images/**.png -d public/images",
+    "squoosh:webp": "yarn squoosh:jpg:webp && squoosh:png:webp"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
@@ -19,8 +22,10 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
     "core-js": "^3.9.1",
     "html-webpack-plugin": "^5.2.0",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "ts-loader": "^8.0.17",
@@ -28,5 +33,8 @@
     "webpack": "^5.24.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@squoosh/cli": "^0.6.3"
   }
 }
