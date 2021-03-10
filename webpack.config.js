@@ -1,46 +1,45 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { htmlFiles } = require('./config/files.js')
 
 module.exports = (env, argv) => {
-  const isProduction = (argv.mode === 'production');
+  const isProduction = argv.mode === 'production'
 
   return {
     entry: path.resolve(__dirname, './src/assets/js/index.ts'),
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     output: {
-      path:  __dirname + '/dist',
-      filename: 'main.js'
+      path: path.join(__dirname, '/dist'),
+      filename: 'main.js',
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        title: "My App",
-        filename: 'index.html',
-        template: "./src/pages/index.tsx",
-      }),
-      new HtmlWebpackPlugin({
-        title: "My App",
-        filename: 'about/index.html',
-        template: "./src/pages/about/index.tsx",
-      }),
+      ...htmlFiles().map(
+        (page) =>
+          new HtmlWebpackPlugin({
+            template: page.path,
+            filename: page.filename,
+          })
+      ),
       new CopyWebpackPlugin(
         {
           patterns: [
             {
-                context: "public",
-                from: "**/*",
-                to: path.resolve(__dirname, "dist")
-            }
-        ]},
+              context: 'public',
+              from: '**/*',
+              to: path.resolve(__dirname, 'dist'),
+            },
+          ],
+        },
         { copyUnmodified: true }
       ),
       new MiniCssExtractPlugin({
-        filename: "style.css",
+        filename: 'style.css',
       }),
     ],
     devtool: isProduction === 'production' ? undefined : 'eval-source-map',
@@ -49,7 +48,7 @@ module.exports = (env, argv) => {
         {
           test: /\.scss/,
           use: [
-            "style-loader",
+            'style-loader',
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
@@ -57,7 +56,7 @@ module.exports = (env, argv) => {
               },
             },
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 url: false,
                 sourceMap: !isProduction,
@@ -65,19 +64,22 @@ module.exports = (env, argv) => {
               },
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
                   plugins: [
-                    ["autoprefixer", {
-                      grid: true
-                    }],
+                    [
+                      'autoprefixer',
+                      {
+                        grid: true,
+                      },
+                    ],
                   ],
                 },
               },
             },
             {
-              loader: "sass-loader",
+              loader: 'sass-loader',
               options: {
                 sourceMap: !isProduction,
               },
@@ -94,7 +96,7 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
       host: '0.0.0.0',
-      port: 58080
-    }
+      port: 58080,
+    },
   }
-};
+}

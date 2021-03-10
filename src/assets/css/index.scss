@@ -1,3 +1,13 @@
+$red: #f00;
+
 body {
-  background-color: rgba(0,0,0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+
+  h1 {
+    color: $red;
+  }
+
+  p {
+    color: $red;
+  }
 }
