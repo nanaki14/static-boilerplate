@@ -1,13 +1,36 @@
-$red: #f00;
+@charset "utf-8";
+/*==========================
+        foundation
+==========================*/
 
-body {
-  background-color: rgba(0, 0, 0, 0.1);
+@import '_foundation/variable';
+@import '_foundation/function';
+@import '_foundation/mixin';
+@import '_foundation/reset';
 
-  h1 {
-    color: $red;
-  }
+/*==========================
+          layout
+==========================*/
 
-  p {
-    color: $red;
-  }
-}
+// @import '_layout/*';
+
+/*==========================
+          component
+==========================*/
+
+// @import '_object/_component/*';
+
+/*==========================
+          project
+==========================*/
+
+// @import '_object/_project/*';
+
+/*==========================
+           scope
+==========================*/
+
+/*==========================
+           utility
+==========================*/
+@import '_object/_utility';

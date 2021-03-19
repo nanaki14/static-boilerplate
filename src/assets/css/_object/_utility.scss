@@ -1,0 +1,50 @@
+/*==========================
+          helpers
+==========================*/
+
+/* display
+==========================*/
+.u-display-n {
+  display: none !important;
+}
+
+.u-hidden-pc {
+  display: none !important;
+
+  @include mq-sp {
+    display: block !important;
+  }
+}
+
+.u-hidden-sp {
+  @include mq-sp {
+    display: none !important;
+  }
+}
+
+.u-hidden-tablet {
+  @include mq-small-pc {
+    display: none !important;
+  }
+}
+
+/* text-align
+==========================*/
+.u-text-left {
+  text-align: left !important;
+}
+
+.u-text-right {
+  text-align: right !important;
+}
+
+.u-text-center {
+  text-align: center !important;
+}
+
+/* state
+==========================*/
+.is-disabled {
+  pointer-events: none !important;
+  cursor: default;
+}

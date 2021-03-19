@@ -1,0 +1,128 @@
+/*==========================
+       break-points
+==========================*/
+
+@mixin mq-small-sp {
+  //iphone5　size
+  @media (max-width: $xs-width) {
+    @content;
+  }
+}
+
+@mixin mq-sp {
+  //iphone↓　size
+  @media (max-width: $s-width - 1px) {
+    @content;
+  }
+}
+
+@mixin mq-min-sp {
+  //iphone↑　size
+  @media (min-width: $s-width) {
+    @content;
+  }
+}
+
+@mixin mq-small-pc {
+  //ipad - ipadPro　size
+  @media (min-width: $s-width) and (max-width: $m-width) {
+    @content;
+  }
+}
+
+@mixin mq-large-pc {
+  //1025px↑　size
+  @media (min-width: $l-width + 1px) {
+    @content;
+  }
+}
+
+/*==========================
+          flex box
+==========================*/
+
+@mixin flexBox($align: start, $justify: start, $wrap: nowarp, $block: block) {
+  @if $block== 'block' {
+    display: flex;
+  } @else if $block== 'inline' {
+    display: inline-flex;
+  }
+  @if $align== 'start' {
+    align-items: flex-start;
+  } @else if $align== 'center' {
+    align-items: center;
+  } @else if $align== 'end' {
+    align-items: flex-end;
+  } @else if $align== 'stretch' {
+    align-items: stretch;
+  }
+  @if $justify== 'start' {
+    justify-content: flex-start;
+  } @else if $justify== 'center' {
+    justify-content: center;
+  } @else if $justify== 'end' {
+    justify-content: flex-end;
+  } @else if $justify== 'around' {
+    justify-content: space-around;
+  } @else if $justify== 'between' {
+    justify-content: space-between;
+  }
+  @if $wrap== 'wrap' {
+    flex-wrap: wrap;
+  } @else if $wrap== 'nowrap' {
+    flex-wrap: nowrap;
+  }
+}
+
+/*==========================
+          triangle
+==========================*/
+// $direction { top, right, bottom, left }
+@mixin drawTriangle($direction, $width, $height, $color) {
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  @if $direction== 'right' or $direction== 'left' {
+    border-width: $width ($height / 2);
+    border-#{$direction}-color: $color;
+  } @else if $direction== 'top' or $direction== 'bottom' {
+    border-width: ($width / 2) $height;
+    border-#{$direction}-color: $color;
+  }
+}
+
+/*==========================
+          css grid
+==========================*/
+
+// CSS Grid Layoutで複数の行を指定するmixin
+@mixin create-grid-column-span($start, $end) {
+  grid-column-start: $start;
+  grid-column-end: $end;
+}
+
+// CSS Grid Layoutで複数の列を指定するmixin
+@mixin create-grid-row-span($start, $end) {
+  grid-row-start: $start;
+  grid-row-end: $end;
+}
+
+/*==========================
+          overflow
+==========================*/
+
+@mixin textHidden {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+@mixin textEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}
