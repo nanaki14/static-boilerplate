@@ -15,7 +15,8 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'main.js',
+      publicPath: '/',
+      filename: 'js/main.js',
     },
     plugins: [
       new CleanWebpackPlugin(),
@@ -39,7 +40,7 @@ module.exports = (env, argv) => {
         { copyUnmodified: true }
       ),
       new MiniCssExtractPlugin({
-        filename: 'style.css',
+        filename: 'css/style.css',
       }),
     ],
     devtool: isProduction === 'production' ? undefined : 'eval-source-map',
