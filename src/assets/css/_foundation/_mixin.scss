@@ -1,38 +1,40 @@
+@use 'variable' as variable;
+
 /*==========================
        break-points
 ==========================*/
 
 @mixin mq-small-sp {
   //iphone5　size
-  @media (max-width: $xs-width) {
+  @media (max-width: variable.$xs-width) {
     @content;
   }
 }
 
 @mixin mq-sp {
   //iphone↓　size
-  @media (max-width: $s-width - 1px) {
+  @media (max-width: variable.$s-width - 1px) {
     @content;
   }
 }
 
 @mixin mq-min-sp {
   //iphone↑　size
-  @media (min-width: $s-width) {
+  @media (min-width: variable.$s-width) {
     @content;
   }
 }
 
 @mixin mq-small-pc {
   //ipad - ipadPro　size
-  @media (min-width: $s-width) and (max-width: $m-width) {
+  @media (min-width: variable.$s-width) and (max-width: variable.$m-width) {
     @content;
   }
 }
 
 @mixin mq-large-pc {
   //1025px↑　size
-  @media (min-width: $l-width + 1px) {
+  @media (min-width: variable.$l-width + 1px) {
     @content;
   }
 }

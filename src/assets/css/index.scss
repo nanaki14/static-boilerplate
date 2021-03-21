@@ -3,10 +3,10 @@
         foundation
 ==========================*/
 
-@import '_foundation/variable';
-@import '_foundation/function';
-@import '_foundation/mixin';
-@import '_foundation/reset';
+@use '_foundation/variable';
+@use '_foundation/function';
+@use '_foundation/mixin';
+@use '_foundation/reset';
 
 /*==========================
           layout

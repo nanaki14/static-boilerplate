@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Fibers = require('fibers')
 const { htmlFiles } = require('./config/files.js')
 
 module.exports = (env, argv) => {
@@ -83,6 +84,10 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: !isProduction,
+                implementation: require('sass'),
+                sassOptions: {
+                  fiber: Fibers,
+                },
               },
             },
           ],

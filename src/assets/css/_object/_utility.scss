@@ -1,3 +1,5 @@
+@use '../_foundation/mixin' as mixin;
+
 /*==========================
           helpers
 ==========================*/
@@ -11,19 +13,19 @@
 .u-hidden-pc {
   display: none !important;
 
-  @include mq-sp {
+  @include mixin.mq-sp {
     display: block !important;
   }
 }
 
 .u-hidden-sp {
-  @include mq-sp {
+  @include mixin.mq-sp {
     display: none !important;
   }
 }
 
 .u-hidden-tablet {
-  @include mq-small-pc {
+  @include mixin.mq-small-pc {
     display: none !important;
   }
 }
