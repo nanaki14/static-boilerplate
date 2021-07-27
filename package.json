@@ -5,7 +5,7 @@
   "author": "nanaki14 <nanaki14@example.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve --mode=development",
+    "dev": "webpack -w --mode=development",
     "build": "webpack --mode=production && prettier --write dist/*.html dist/**/*.html"
   },
   "devDependencies": {
@@ -16,11 +16,14 @@
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "@types/webpack-env": "^1.16.2",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "autoprefixer": "^10.2.4",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
+    "browser-sync": "^2.27.5",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
     "core-js": "^3.9.1",
@@ -54,11 +57,14 @@
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.2",
     "webpack": "^5.24.2",
+    "webpack-build-notifier": "^2.3.0",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@barba/core": "^2.9.7",
+    "@barba/router": "^2.1.10",
+    "cheerio": "^1.0.0-rc.10",
     "gsap": "^3.7.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

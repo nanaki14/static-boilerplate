@@ -34,3 +34,36 @@
            utility
 ==========================*/
 @import '_object/_utility';
+
+.MouseStorker {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  pointer-events: none;
+}
+
+.Kv__Link {
+  display: block;
+  width: 200px;
+  margin: 16px auto;
+  padding: 16px 8px;
+  border-radius: 30px;
+  background-color: #35d3f5;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  &.is-hover {
+    opacity: 0.7;
+  }
+}
+
+.AboutKv {
+  a {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+  }
+}

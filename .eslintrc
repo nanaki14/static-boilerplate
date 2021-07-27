@@ -42,6 +42,7 @@
     "sort-destructure-keys/sort-destructure-keys": 2
   },
   "globals": {
-    "localStorage": true
+    "localStorage": true,
+    "requestAnimationFrame": true
   }
 }
