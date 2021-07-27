@@ -1,17 +1,9 @@
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderPage } from '@/utils/renderPage'
+import { About } from '@/components/pages/About'
+import { Head } from '@/components/utils/Head'
 
-const App = () => <div>About React !!</div>
-
-export default ({ htmlWebpackPlugin }) => `
-  <!DOCTYPE html>
-  <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${htmlWebpackPlugin.options.title}</title>
-  </head>
-  <body>
-    ${renderToStaticMarkup(<App />)}
-  </body>
-  </html>
-`
+export default () =>
+  `${renderPage({
+    elm: <About />,
+    head: <Head title="about" />,
+  })}`

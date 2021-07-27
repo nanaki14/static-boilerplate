@@ -4,7 +4,8 @@
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:tailwind/recommended"
   ],
   "plugins": ["@typescript-eslint", "sort-destructure-keys", "react", "react-hooks"],
   "parser": "@typescript-eslint/parser",
@@ -38,13 +39,9 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "import/order": ["error"],
-    "import/no-named-as-default": "off",
     "sort-destructure-keys/sort-destructure-keys": 2
   },
   "globals": {
-    "JQuery": true,
-    "location": true,
-    "localStorage": true,
-    "requestAnimationFrame": true
+    "localStorage": true
   }
 }

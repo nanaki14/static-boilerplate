@@ -3,6 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Fibers = require('fibers')
+const { htmlFiles } = require('./config/files.js')
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production'
@@ -14,20 +16,18 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'main.js',
+      publicPath: '/',
+      filename: 'js/main.js',
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        title: 'My App',
-        filename: 'index.html',
-        template: './src/pages/index.tsx',
-      }),
-      new HtmlWebpackPlugin({
-        title: 'My App',
-        filename: 'about/index.html',
-        template: './src/pages/about/index.tsx',
-      }),
+      ...htmlFiles().map(
+        (page) =>
+          new HtmlWebpackPlugin({
+            template: page.path,
+            filename: page.filename,
+          })
+      ),
       new CopyWebpackPlugin(
         {
           patterns: [
@@ -41,7 +41,7 @@ module.exports = (env, argv) => {
         { copyUnmodified: true }
       ),
       new MiniCssExtractPlugin({
-        filename: 'style.css',
+        filename: 'css/style.css',
       }),
     ],
     devtool: isProduction ? undefined : 'eval-source-map',
@@ -84,6 +84,10 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: !isProduction,
+                implementation: require('sass'),
+                sassOptions: {
+                  fiber: Fibers,
+                },
               },
             },
           ],

@@ -1,0 +1,52 @@
+@use '../_foundation/mixin' as mixin;
+
+/*==========================
+          helpers
+==========================*/
+
+/* display
+==========================*/
+.u-display-n {
+  display: none !important;
+}
+
+.u-hidden-pc {
+  display: none !important;
+
+  @include mixin.mq-sp {
+    display: block !important;
+  }
+}
+
+.u-hidden-sp {
+  @include mixin.mq-sp {
+    display: none !important;
+  }
+}
+
+.u-hidden-tablet {
+  @include mixin.mq-small-pc {
+    display: none !important;
+  }
+}
+
+/* text-align
+==========================*/
+.u-text-left {
+  text-align: left !important;
+}
+
+.u-text-right {
+  text-align: right !important;
+}
+
+.u-text-center {
+  text-align: center !important;
+}
+
+/* state
+==========================*/
+.is-disabled {
+  pointer-events: none !important;
+  cursor: default;
+}

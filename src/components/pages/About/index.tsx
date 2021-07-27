@@ -3,6 +3,6 @@ import { VFC } from 'react'
 
 export type Props = {}
 
-export const Home: VFC<Props> = () => {
-  return <Layout>home page</Layout>
+export const About: VFC<Props> = () => {
+  return <Layout>about page</Layout>
 }
