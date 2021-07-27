@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "stylelint-prettier"
+  ],
+  "extends": [
+    "stylelint-prettier/recommended",
+    "stylelint-config-prettier"
+  ],
+  "ignoreFiles": [
+    "dist/**/*.css",
+    "**/node_modules/**"
+  ]
+}

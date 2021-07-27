@@ -1,7 +1,6 @@
-import React from "react";
-import { renderToStaticMarkup } from "react-dom/server";
+import { renderToStaticMarkup } from 'react-dom/server'
 
-const App = () => <div>About React !!</div>;
+const App = () => <div>About React !!</div>
 
 export default ({ htmlWebpackPlugin }) => `
   <!DOCTYPE html>
@@ -15,4 +14,4 @@ export default ({ htmlWebpackPlugin }) => `
     ${renderToStaticMarkup(<App />)}
   </body>
   </html>
-`;
+`
