@@ -1,8 +1,11 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
+const Fibers = require('fibers')
 const { htmlFiles } = require('./config/files.js')
 
 module.exports = (env, argv) => {
@@ -19,6 +22,15 @@ module.exports = (env, argv) => {
       filename: 'js/main.js',
     },
     plugins: [
+      new WebpackBuildNotifierPlugin({
+        sound: false,
+      }),
+      new BrowserSyncPlugin({
+        host: '0.0.0.0',
+        port: 58080,
+        server: { baseDir: ['dist'] },
+        files: ['./dist/*.css', './dist/*.html', './dist/*.js'],
+      }),
       new CleanWebpackPlugin(),
       ...htmlFiles().map(
         (page) =>
@@ -43,7 +55,10 @@ module.exports = (env, argv) => {
         filename: 'css/style.css',
       }),
     ],
-    devtool: isProduction === 'production' ? undefined : 'eval-source-map',
+    optimization: {
+      minimize: isProduction,
+    },
+    devtool: isProduction ? undefined : 'eval-source-map',
     module: {
       rules: [
         {
@@ -83,21 +98,20 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: !isProduction,
+                implementation: require('sass'),
+                sassOptions: {
+                  fiber: Fibers,
+                },
               },
             },
           ],
         },
         {
           test: [/\.ts$/, /\.tsx$/, /\.js$/],
+          exclude: /node_modules/,
           use: ['babel-loader', 'ts-loader'],
         },
       ],
-    },
-    devServer: {
-      contentBase: path.join(__dirname, 'dist'),
-      compress: true,
-      host: '0.0.0.0',
-      port: 58080,
     },
   }
 }

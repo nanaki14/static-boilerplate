@@ -1,13 +1,69 @@
-$red: #f00;
+@charset "utf-8";
+/*==========================
+        foundation
+==========================*/
 
-body {
-  background-color: rgba(0, 0, 0, 0.1);
+@use '_foundation/variable';
+@use '_foundation/function';
+@use '_foundation/mixin';
+@use '_foundation/reset';
 
-  h1 {
-    color: $red;
+/*==========================
+          layout
+==========================*/
+
+// @import '_layout/*';
+
+/*==========================
+          component
+==========================*/
+
+// @import '_object/_component/*';
+
+/*==========================
+          project
+==========================*/
+
+// @import '_object/_project/*';
+
+/*==========================
+           scope
+==========================*/
+
+/*==========================
+           utility
+==========================*/
+@import '_object/_utility';
+
+.MouseStorker {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  pointer-events: none;
+}
+
+.Kv__Link {
+  display: block;
+  width: 200px;
+  margin: 16px auto;
+  padding: 16px 8px;
+  border-radius: 30px;
+  background-color: #35d3f5;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  &.is-hover {
+    opacity: 0.7;
   }
+}
 
-  p {
-    color: $red;
+.AboutKv {
+  a {
+    display: block;
+    font-size: 16px;
+    text-align: center;
   }
 }

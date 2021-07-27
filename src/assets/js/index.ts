@@ -1,4 +1,6 @@
 import '../css/index.scss'
-import { sampleConsole } from '@/assets/js/sample'
+import { barbaInit } from '@/assets/js/modules/barba'
+import { controllerInit } from '@/assets/js/modules/controllers'
 
-sampleConsole()
+barbaInit()
+controllerInit()
