@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
         filename: "style.css",
       }),
     ],
-    devtool: isProduction === 'production' ? undefined : 'eval-source-map',
+    devtool: isProduction ? undefined : 'eval-source-map',
     module: {
       rules: [
         {
