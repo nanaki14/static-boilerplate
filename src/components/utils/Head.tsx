@@ -1,4 +1,5 @@
 import { VFC } from 'react'
+import Helmet, { HelmetProps } from 'react-helmet'
 import { meta } from '@/constatnts/meta'
 
 export type Props = {
@@ -8,11 +9,17 @@ export type Props = {
   siteName?: string
   ogImage?: string
   noindex?: boolean
+  children?: typeof Helmet
+  htmlAttributes?: HelmetProps['htmlAttributes']
+  bodyAttributes?: HelmetProps['bodyAttributes']
 }
 
 export const Head: VFC<Props> = (props) => {
   return (
-    <>
+    <Helmet
+      bodyAttributes={props.bodyAttributes}
+      htmlAttributes={props.htmlAttributes}
+    >
       <title>{props.title || meta.title}</title>
       <meta
         name="description"
@@ -48,6 +55,7 @@ export const Head: VFC<Props> = (props) => {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="ja_JP" />
-    </>
+      {props.children}
+    </Helmet>
   )
 }
