@@ -20,6 +20,7 @@ export const Head: VFC<Props> = (props) => {
       bodyAttributes={props.bodyAttributes}
       htmlAttributes={props.htmlAttributes}
     >
+      <meta charSet="UTF-8" />
       <title>{props.title || meta.title}</title>
       <meta
         name="description"
@@ -29,7 +30,12 @@ export const Head: VFC<Props> = (props) => {
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       ></meta>
-      {props.noindex && <meta name="robots" content="noindex" />}
+      {props.noindex ? <meta name="robots" content="noindex" /> : (
+        <>
+          <meta name="robots" content="index,follow,noodp" />
+          <meta name="googlebot" content="index,follow" />
+        </>
+      )}
       {!props.noindex && props.url && <link rel="canonical" href={props.url} />}
       <meta
         property="og:url"
